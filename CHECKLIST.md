@@ -6,8 +6,8 @@
 - [ ] Turn 1, both: read the case study
 - [x] Turn 2, Cristian: 01 Stakeholders
 - [ ] Turn 2, Cristian: 04 Complete requirements
-- [ ] Turn 3, Morgan: 05 Class diagram
-- [ ] Turn 3, Morgan: 06 Data problems
+- [x] Turn 3, Morgan: 05 Class diagram
+- [x] Turn 3, Morgan: 06 Data problems
 - [ ] Turn 4, Cristian: 02 EU AI Act
 - [ ] Turn 4, Cristian: 03 Non-functional requirements
 - [ ] Turn 5, Morgan: 07 Features
