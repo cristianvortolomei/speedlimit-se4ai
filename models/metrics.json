@@ -1,0 +1,13 @@
+{
+  "training_hours": 307,
+  "test_hours": 82,
+  "test_mae": 0.859,
+  "baseline_mae": 0.875,
+  "mean_prediction_per_limit": {
+    "40": 1.38,
+    "50": 1.354,
+    "60": 1.255,
+    "70": 1.157,
+    "80": 1.052
+  }
+}

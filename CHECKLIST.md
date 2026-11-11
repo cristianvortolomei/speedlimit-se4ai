@@ -10,7 +10,7 @@
 - [x] Turn 3, Morgan: 06 Data problems
 - [ ] Turn 4, Cristian: 02 EU AI Act
 - [ ] Turn 4, Cristian: 03 Non-functional requirements
-- [ ] Turn 5, Morgan: 07 Features
+- [x] Turn 5, Morgan: 07 Features
 - [ ] Turn 6, Cristian: 10 Human-in-the-loop
 - [ ] Turn 6, Cristian: 12 Air quality tests
 - [ ] Turn 7, Morgan: 08 Architecture
@@ -19,8 +19,8 @@
 
 ## App
 
-- [ ] Turn 9, Morgan: data cleaning
-- [ ] Turn 9, Morgan: network training and prediction
+- [x] Turn 9, Morgan: data cleaning
+- [x] Turn 9, Morgan: network training and prediction
 - [x] Turn 10, Cristian: router
 - [x] Turn 10, Cristian: LLM and air quality
 - [x] Turn 10, Cristian: GUI
