@@ -5,7 +5,7 @@
 - [x] Turn 1, Cristian: set up the repo
 - [x] Turn 1, both: read the case study
 - [x] Turn 2, Cristian: 01 Stakeholders
-- [ ] Turn 2, Cristian: 04 Complete requirements
+- [x] Turn 2, Cristian: 04 Complete requirements
 - [x] Turn 3, Morgan: 05 Class diagram
 - [x] Turn 3, Morgan: 06 Data problems
 - [ ] Turn 4, Cristian: 02 EU AI Act
@@ -21,9 +21,9 @@
 
 - [ ] Turn 9, Morgan: data cleaning
 - [ ] Turn 9, Morgan: network training and prediction
-- [ ] Turn 10, Cristian: router
-- [ ] Turn 10, Cristian: LLM and air quality
-- [ ] Turn 10, Cristian: GUI
+- [x] Turn 10, Cristian: router
+- [x] Turn 10, Cristian: LLM and air quality
+- [x] Turn 10, Cristian: GUI
 - [ ] Turn 11, Morgan: connect the network to the app
 - [ ] Turn 11, Morgan: run all tests
 - [ ] Turn 11, Morgan: 13 Retraining
