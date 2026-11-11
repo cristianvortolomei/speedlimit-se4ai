@@ -163,3 +163,8 @@ All files are semicolon-separated with Windows line endings. Five of the six sta
 - The Year N+1 readings. The file needs replacing, not filling in.
 
 ## Comparison
+Getting an understanding of and proper look at the data yourself without an LLM is important in my opinion. In round 1 I identified glaring issues with the data that had pretty straightforward solutions, just by skimming each csv file we were provided. 
+
+The LLM took a look for Round 2, it identified the same issues as me, plus some issues that I could not spot by eye, for example the trailing whitespaces after some values. It also has more domain knowledge than me and recognized some incorrect units of measurement for certain values, which would have been difficult for me to recognize without deeper research. 
+
+Round 3 identified all the problems as well as the appropriate solutions, it had the benefit of also seeing the context of Rounds 1 and 2 and improving on that. It laid out a clear plan regarding imputation and where we deliberately do not plan to do that.

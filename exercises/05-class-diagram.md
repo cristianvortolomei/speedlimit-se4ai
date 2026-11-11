@@ -163,3 +163,10 @@ Modelling decisions:
 - **Multiplicities show the data, not the intended design.** A reading points to 0..1 sensors because sensor 19 has no row. A sensor points to exactly 1 type because that is the intent, but code `T` breaks it. *(assumed)*
 
 ## Comparison
+I am actually content with the initial class diagram which I made in round 1, barring some errors I made. The first mistake was not putting the SensorTypeCode attribute in SensorType. I represented the data correctly as is apart from that, specifying the instances where an entity can only possess one of another entity which is the important part. But I did leave out some correct notation and also methods of abstracting the logic I was trying to represent which I was not aware of.
+
+Round 2 added some new representations of the data, with the errors I had made manually amended. Mermaid diagrams are more useful for markdown but I find can be hard to read when they get larger.
+
+Round 3 created subclasses such as NearAccident. It had better notation showing the relationships between entitities and what their foreign key references are, e.g the value SensorTypeCode in class Sensor points to a class SensorType. 
+
+The LLM rounds helped solve errors in my initial diagram, implement it in a mermaid diagram which is more standard, and abstract the logic into a better representation as well as come up with enhanced logic such as the subclasses. An important thing to note with LLM diagrams is to constantly verify them to make sure they are human-readable too.

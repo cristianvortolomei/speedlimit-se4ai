@@ -3,7 +3,7 @@
 ## Exercises
 
 - [x] Turn 1, Cristian: set up the repo
-- [ ] Turn 1, both: read the case study
+- [x] Turn 1, both: read the case study
 - [x] Turn 2, Cristian: 01 Stakeholders
 - [ ] Turn 2, Cristian: 04 Complete requirements
 - [x] Turn 3, Morgan: 05 Class diagram
