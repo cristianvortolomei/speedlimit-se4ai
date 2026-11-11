@@ -1,4 +1,4 @@
-"""Reads the current air quality and asks the LLM how much to lower the limit (REQ2)."""
+"""Reads the current air quality and asks the LLM how much to lower the limit (REQ2, SPEC5)."""
 
 import json
 import os
@@ -9,7 +9,8 @@ from google.genai import types
 
 AIR_QUALITY_URL = "https://air-quality-api.open-meteo.com/v1/air-quality"
 MODEL = "gemini-3.5-flash-lite"
-ALLOWED_REDUCTIONS = [0, 10, 20, 30, 40]
+AQI_THRESHOLD = 40
+ALLOWED_REDUCTIONS = [10, 20, 30, 40]
 
 POLLUTANTS = {
     "european_aqi": "European AQI",
@@ -19,15 +20,16 @@ POLLUTANTS = {
     "ozone": "Ozone (µg/m³)",
 }
 
-INSTRUCTIONS = """You decide whether the speed limit on a highway should be lowered because of air quality.
+INSTRUCTIONS = """You decide how much the speed limit on a highway should be lowered because of air quality.
 Lower speeds reduce traffic emissions. The normal limit is 80 km/h.
 
 Current air quality at the highway:
 {measurements}
 
-European AQI bands: 0-20 good, 20-40 fair, 40-60 moderate, 60-80 poor, 80-100 very poor, above 100 extremely poor.
+European AQI bands: 40-60 moderate, 60-80 poor, 80-100 very poor, above 100 extremely poor.
 
-Choose a reduction of 0, 10, 20, 30 or 40 km/h. Use 0 when the air quality is good or fair.
+The air quality is moderate or worse, so the limit must be lowered.
+Choose a reduction of 10, 20, 30 or 40 km/h. Worse air quality must never get a smaller reduction.
 Give the reason in one short sentence."""
 
 ANSWER_SCHEMA = {
@@ -56,6 +58,10 @@ def fetch_air_quality(latitude: float, longitude: float) -> dict:
 
 
 def decide_reduction(air_quality: dict) -> tuple[int, str]:
+    """Returns the reduction in km/h and the reason. Raises if the LLM's answer is unusable."""
+    if air_quality["european_aqi"] <= AQI_THRESHOLD:
+        return 0, f"AQI {AQI_THRESHOLD} or below, so no reduction."
+
     measurements = "\n".join(
         f"- {POLLUTANTS[name]}: {value}" for name, value in air_quality.items()
     )
@@ -72,5 +78,5 @@ def decide_reduction(air_quality: dict) -> tuple[int, str]:
     answer = json.loads(response.text)
     reduction = answer["reduction_kmh"]
     if reduction not in ALLOWED_REDUCTIONS:
-        raise ValueError(f"Unexpected reduction from the LLM: {reduction}")
+        raise ValueError(f"unexpected reduction from the LLM: {reduction}")
     return reduction, answer["reason"]

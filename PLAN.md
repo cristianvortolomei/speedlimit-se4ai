@@ -15,8 +15,13 @@ Keep everything afterwards. The course says we need it again in the 3rd semester
 | Situation | Who decides |
 |---|---|
 | Dark (below 500 millilux), or black ice risk (over 1000 micrometers of water and below 0 °C) | Neural network, aiming for at most 1 near-accident per hour on average |
-| Bad air quality (read from an API) | LLM |
+| Bad air quality (European AQI above 40, read from an API) | LLM, 10 to 40 km/h less |
+| Both of the above | The lower limit |
 | None of these | No reduction: 80 km/h |
+| A light, water or temperature reading is missing | 60 km/h |
+| Control room override | The control room's choice |
+
+The full rules are in [04 Complete requirements](exercises/04-complete-requirements.md), Round 3.
 
 ## How a turn works
 

@@ -12,4 +12,4 @@ python -m venv .venv
 .venv\Scripts\streamlit run app/main.py
 ```
 
-The app needs a Gemini API key in a `.env` file: `GEMINI_API_KEY=your-key`.
+The app needs a Gemini API key in a `.env` file: `GEMINI_API_KEY=your-key`. Every decision is logged to `logs/decisions.csv`.
