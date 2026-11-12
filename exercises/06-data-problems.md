@@ -39,6 +39,7 @@ Checked against the V100 files in [`data/`](../data/). Kind says what the fix is
 
 | Problem | Evidence | Fix | Kind |
 |---|---|---|---|
+| **Year N+1 is a copy of Year N** | All 12,648 rows are identical, in the same order. Only the header is missing. | It adds no new conditions, so [13 Retraining](13-retraining.md) can't use it to show changes between the years. | Decision |
 | Year N+1 has no header | The first line is already data. | Use the column names from Year N. Every row has the same 7 fields. | Cleaning |
 | Decimal commas | `0,00`, `110000,11` | Parse with a comma as the decimal separator. | Cleaning |
 | Readings are not on the hour | One reading per sensor per hour, at a random minute and second. Only 3 of 12,648 are at :00:00. | Group by day and hour, so all sensors and the speed limit line up in one row per hour. | Cleaning |
@@ -112,7 +113,8 @@ All files are semicolon-separated with Windows line endings. Five of the six sta
 | Problem | Evidence | Fix | Kind |
 |---|---|---|---|
 | No header row | Line 1 is data: `1;1;0;3;35;6;0,00`. | Use the Year N header. Every row has the same 7 fields. | Cleaning |
-| Same problems as Year N | Same sensors, row counts and formats as Year N. | Same fixes as Year N. | Cleaning |
+| Copy of Year N | All 12,648 rows are identical to Year N, in the same order. | Don't use it as new training data. For 13 Retraining it shows no change, because nothing changed. | Documented assumption |
+| Same problems as Year N | Identical content. | Same fixes as Year N. | Cleaning |
 
 ### `Case_Study_Speed_Limit_AccidentsYearN_V100.csv`
 
@@ -133,6 +135,7 @@ All files are semicolon-separated with Windows line endings. Five of the six sta
 
 | Problem | Evidence | Fix | Kind |
 |---|---|---|---|
+| Matched to Year N's conditions | The Year N+1 readings are a copy of Year N, so these accidents would be joined to Year N's weather. | Keep it out of training. | Documented assumption |
 | File name differs | No `Case_Study_Speed_Limit_` prefix, unlike every other file. | Rename to match. | Cleaning |
 | Same structure problems as Year N | 31 rows with hour 24 (first at line 45, three on day 31). Injured blank for 15 of 21 accidents (first at line 65). Empty event at line 87 `1;6;1;38;CJ 104GNA;;;;;`. Not sorted (line 2 day 23, line 3 day 24, line 4 day 3). 233 of 744 hours have no event. | Same fixes as Year N. | Cleaning, imputation |
 

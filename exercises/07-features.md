@@ -51,7 +51,7 @@ Follows the ML Architecture deck: for each raw attribute, decide whether to use 
 
 - **When:** only in hours that are dark (mean light below 0.5 lux) or have a danger of black ice (mean water above 1000 micrometers and mean temperature below 0 °C). The router decides this (SPEC1, SPEC2). Air quality is the LLM's job.
 - **Question it answers:** "Under these conditions, with this speed limit, how many near-accidents will happen in the next hour?"
-- **How the limit is chosen:** ask the network for each candidate limit (40, 50, 60, 70 km/h). Choose the highest one with a prediction of at most 1. If none qualifies, use 40 km/h (04 Round 3, SPEC3b). This fits inside the app's existing `predict_limit(conditions)`, which can loop over the candidates and return the chosen limit.
+- **How the limit is chosen:** ask the network for each candidate limit (40, 50, 60, 70 km/h). Choose the highest one with a prediction of at most 1. If none qualifies, use 40 km/h (04 Round 3, SPEC3b).
 
 ### Training examples and label
 

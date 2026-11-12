@@ -21,3 +21,9 @@ The app needs a Gemini API key in a `.env` file: `GEMINI_API_KEY=your-key`. Ever
 ```
 
 This cleans the data (`training/clean.py`), trains the network on the dark or icy hours of Year N and saves it to `models/network.joblib`, with its test results in `models/metrics.json`. A trained network is already in the repo, so the app runs without this step.
+
+## Run the tests
+
+```
+.venv\Scripts\python -m pytest
+```
