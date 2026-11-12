@@ -9,9 +9,9 @@
 - [x] Turn 3, Morgan: 05 Class diagram
 - [x] Turn 3, Morgan: 06 Data problems
 - [x] Turn 4, Cristian: 02 EU AI Act
-- [ ] Turn 4, Cristian: 03 Non-functional requirements
+- [x] Turn 4, Cristian: 03 Non-functional requirements
 - [x] Turn 5, Morgan: 07 Features
-- [ ] Turn 6, Cristian: 10 Human-in-the-loop
+- [x] Turn 6, Cristian: 10 Human-in-the-loop
 - [ ] Turn 6, Cristian: 12 Air quality tests
 - [x] Turn 7, Morgan: 08 Architecture
 - [x] Turn 7, Morgan: 11 Router tests
