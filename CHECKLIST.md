@@ -26,7 +26,7 @@
 - [x] Turn 10, Cristian: GUI
 - [x] Turn 11, Morgan: connect the network to the app
 - [x] Turn 11, Morgan: run all tests
-- [ ] Turn 11, Morgan: 13 Retraining
+- [x] Turn 11, Morgan: 13 Retraining
 
 ## Presentation
 
