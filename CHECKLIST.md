@@ -12,7 +12,7 @@
 - [x] Turn 4, Cristian: 03 Non-functional requirements
 - [x] Turn 5, Morgan: 07 Features
 - [x] Turn 6, Cristian: 10 Human-in-the-loop
-- [ ] Turn 6, Cristian: 12 Air quality tests
+- [x] Turn 6, Cristian: 12 Air quality tests
 - [x] Turn 7, Morgan: 08 Architecture
 - [x] Turn 7, Morgan: 11 Router tests
 - [ ] Turn 8, Cristian: 09 Sequence diagram
