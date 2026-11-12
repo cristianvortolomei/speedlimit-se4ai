@@ -25,7 +25,7 @@
 - [x] Turn 10, Cristian: LLM and air quality
 - [x] Turn 10, Cristian: GUI
 - [x] Turn 11, Morgan: connect the network to the app
-- [ ] Turn 11, Morgan: run all tests
+- [x] Turn 11, Morgan: run all tests
 - [ ] Turn 11, Morgan: 13 Retraining
 
 ## Presentation

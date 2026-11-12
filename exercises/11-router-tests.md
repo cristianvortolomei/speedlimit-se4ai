@@ -9,7 +9,7 @@ ID | Light (mlx) | Water (µm) | Temp (°C) | Expected | What
 1 |	499 |	0 |	10	| yes |	Dark
 2 | 500 | 1001 | −1	| yes | Light, but too much water and too cold
 3 | 500 |	1000 | −1 | no | Light, but there is not enough water for black ice despite the cold
-4 | 500 | 1001 | 0 | no | Light, there is too much water, but its not cold enough
+4 | 500 | 1001 | 0 | no | Light, there is too much water, but it's not cold enough
 
 ## Round 2
 

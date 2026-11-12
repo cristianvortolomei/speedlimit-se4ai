@@ -27,3 +27,9 @@ This cleans the data (`training/clean.py`), trains the network on the dark or ic
 ```
 .venv\Scripts\python -m pytest
 ```
+
+This includes the tests that call the real LLM (exercise 12, T2 and T10 to T12). They need the API key in `.env` and take about five minutes, because Gemini's free tier allows 15 requests per minute. To run only the quick tests:
+
+```
+.venv\Scripts\python -m pytest -m "not llm"
+```

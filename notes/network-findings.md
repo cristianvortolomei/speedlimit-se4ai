@@ -36,7 +36,7 @@ No limit reaches the target in the data either:
 | Gradient boosting (Poisson loss) | same 4 | 0.949 |
 | Our MLP | + humidity, traffic, hour of day, previous hour's count | 0.973 |
 
-The trained model in `models/` reaches 0.859 on days 25 to 31, against 0.875 for the average (`models/metrics.json`).
+The trained model in `models/` reaches 0.859 on days 25 to 31, against 0.875 for the average (`models/metrics.json`). Always predicting 1 does even better: 0.793, because 1 is the median and the median gives the lowest absolute error (Cristian's 03, NFR12).
 
 **No input correlates with the count by more than ±0.1** (light +0.06, water +0.05, temperature −0.01, humidity −0.02, traffic −0.01, limit −0.10).
 
@@ -54,15 +54,16 @@ The trained model in `models/` reaches 0.859 on days 25 to 31, against 0.875 for
 
 ## The definition of "too close" decides the outcome
 
-The case study (SPEC4) doesn't say what "too close" means. We used 20 cm, because every record is within 20 cm.
+The case study (SPEC4) doesn't say what "too close" means. We used 20 cm or closer, because every record is within 20 cm. Skids always count.
 
-| Near-accident means closer than | Per hour in dark or icy hours | App's choice |
+| A car or guardrail pass counts when it is | Per hour in dark or icy hours | App's choice with a network retrained on that definition (389 hours) |
 |---|---|---|
-| 20 cm | 1.26 | always 40 km/h |
-| 15 cm | 0.64 | always 70 km/h |
-| 10 cm | 0.26 | always 70 km/h |
+| 20 cm or closer (current) | 1.26 | 40 km/h in every hour |
+| closer than 20 cm | 0.99 | 70 km/h in 313 hours, 60 in 29, 50 in 12, 40 in 35 |
+| 15 cm or closer | 0.64 | 70 km/h in every hour |
+| 10 cm or closer | 0.26 | 70 km/h in every hour |
 
-Either way the network doesn't really decide; the definition does.
+Changing "20 cm or closer" to "closer than 20 cm" alone flips the app from 40 to mostly 70 km/h. The network doesn't really decide; the definition does. (Thanks to Cristian's check, which spotted the "or closer".)
 
 ## What would and wouldn't help
 

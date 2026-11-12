@@ -10,6 +10,7 @@ from google.genai import types
 AIR_QUALITY_URL = "https://air-quality-api.open-meteo.com/v1/air-quality"
 MODEL = "gemini-3.5-flash-lite"
 AQI_THRESHOLD = 40
+LLM_TIMEOUT_MS = 15_000  # NFR2: stop waiting for the LLM after 15 seconds
 ALLOWED_REDUCTIONS = [10, 20, 30, 40]
 
 POLLUTANTS = {
@@ -65,7 +66,10 @@ def decide_reduction(air_quality: dict) -> tuple[int, str]:
     measurements = "\n".join(
         f"- {POLLUTANTS[name]}: {value}" for name, value in air_quality.items()
     )
-    client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+    client = genai.Client(
+        api_key=os.environ["GEMINI_API_KEY"],
+        http_options=types.HttpOptions(timeout=LLM_TIMEOUT_MS),  # NFR2
+    )
     response = client.models.generate_content(
         model=MODEL,
         contents=INSTRUCTIONS.format(measurements=measurements),
