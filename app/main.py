@@ -25,11 +25,12 @@ light_lux = col1.number_input(
     help="Dark below 0.5 lux (500 millilux)",
 )
 water = col2.number_input(
-    "Water on the road (µm)", min_value=0, value=None, step=100, placeholder="e.g. 0",
-    help="Black ice above 1000 µm and below 0 °C",
+    "Water on the road (µm)", min_value=0.0, value=None, step=100.0, format="%.1f",
+    placeholder="e.g. 0", help="Black ice above 1000 µm and below 0 °C",
 )
 temperature = col3.number_input(
-    "Temperature (°C)", min_value=-30, max_value=70, value=None, placeholder="e.g. 5"
+    "Temperature (°C)", min_value=-30.0, max_value=70.0, value=None, step=0.1, format="%.1f",
+    placeholder="e.g. 5",
 )
 
 st.subheader("Air quality")
@@ -58,8 +59,8 @@ def decide_and_show():
 
     conditions = {
         "illuminance_millilux": None if light_lux is None else round(light_lux * 1000),
-        "water_micrometers": None if water is None else int(water),
-        "temperature_celsius": None if temperature is None else int(temperature),
+        "water_micrometers": water,
+        "temperature_celsius": temperature,
     }
     with st.spinner("Deciding..."):
         if source == "Live from Open-Meteo":

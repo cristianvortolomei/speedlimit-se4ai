@@ -9,6 +9,7 @@ import router
 NORMAL_LIMIT = 80
 MISSING_READINGS_LIMIT = 60
 CANDIDATE_LIMITS = [40, 50, 60, 70, 80]
+NETWORK_LIMITS = [40, 50, 60, 70]  # the limit was never 80 in a dark or icy hour
 MAX_NEAR_ACCIDENTS_PER_HOUR = 1
 
 
@@ -32,7 +33,7 @@ def choose_network_limit(predictions: dict[int, float]) -> int:
         limit for limit, near_accidents in predictions.items()
         if near_accidents <= MAX_NEAR_ACCIDENTS_PER_HOUR
     ]
-    return max(safe, default=min(CANDIDATE_LIMITS))
+    return max(safe, default=min(NETWORK_LIMITS))
 
 
 def set_speed_limit(conditions: dict, air: dict | None, override: int | None = None) -> Decision:
@@ -57,9 +58,14 @@ def set_speed_limit(conditions: dict, air: dict | None, override: int | None = N
         if dark or black_ice:
             predictions = {
                 candidate: network.predict_near_accidents(conditions, candidate)
-                for candidate in CANDIDATE_LIMITS
+                for candidate in NETWORK_LIMITS
             }
             network_limit = choose_network_limit(predictions)
+            if min(predictions.values()) > MAX_NEAR_ACCIDENTS_PER_HOUR:
+                warnings.append(
+                    f"No limit reaches at most {MAX_NEAR_ACCIDENTS_PER_HOUR} predicted near-accident "
+                    f"per hour. {network_limit} km/h is used."
+                )
             limit = network_limit
 
     # REQ7: if the air quality or the LLM's answer is missing, skip the air quality reduction.

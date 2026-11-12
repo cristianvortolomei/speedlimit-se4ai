@@ -5,11 +5,11 @@ ICE_WATER_ABOVE_MICROMETERS = 1000
 ICE_TEMPERATURE_BELOW_CELSIUS = 0
 
 
-def is_dark(illuminance_millilux: int) -> bool:
+def is_dark(illuminance_millilux: float) -> bool:
     return illuminance_millilux < DARK_BELOW_MILLILUX
 
 
-def has_black_ice_risk(water_micrometers: int, temperature_celsius: int) -> bool:
+def has_black_ice_risk(water_micrometers: float, temperature_celsius: float) -> bool:
     return (
         water_micrometers > ICE_WATER_ABOVE_MICROMETERS
         and temperature_celsius < ICE_TEMPERATURE_BELOW_CELSIUS
@@ -17,7 +17,7 @@ def has_black_ice_risk(water_micrometers: int, temperature_celsius: int) -> bool
 
 
 def weather_reduction_needed(
-    illuminance_millilux: int, water_micrometers: int, temperature_celsius: int
+    illuminance_millilux: float, water_micrometers: float, temperature_celsius: float
 ) -> bool:
     return is_dark(illuminance_millilux) or has_black_ice_risk(
         water_micrometers, temperature_celsius

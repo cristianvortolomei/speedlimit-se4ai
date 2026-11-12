@@ -23,6 +23,14 @@ Keep everything afterwards. The course says we need it again in the 3rd semester
 
 The full rules are in [04 Complete requirements](exercises/04-complete-requirements.md), Round 3.
 
+## Team decisions
+
+- **The data has no link between near-accidents and the limit or the weather.** Near-accidents behave like a random rate of about 1.3 per hour, so no limit reaches REQ1's target of at most 1. The teacher knows. We present this as a finding.
+- **SPEC3b stays.** When no limit reaches the target, the app uses 40 km/h and warns the control room.
+- **The network never predicts a higher limit as safer than a lower one** (`app/network.py`), so it can't learn "faster is safer" from noise.
+- **The network only chooses between 40 and 70 km/h.** The limit was never 80 in a dark or icy hour. 80 only comes from REQ3.
+- **Readings can have decimals**, so values like −0.1 °C or 1000.5 µm aren't rounded past the black ice thresholds.
+
 ## How a turn works
 
 1. Pull.
