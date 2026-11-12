@@ -8,7 +8,7 @@
 - [x] Turn 2, Cristian: 04 Complete requirements
 - [x] Turn 3, Morgan: 05 Class diagram
 - [x] Turn 3, Morgan: 06 Data problems
-- [ ] Turn 4, Cristian: 02 EU AI Act
+- [x] Turn 4, Cristian: 02 EU AI Act
 - [ ] Turn 4, Cristian: 03 Non-functional requirements
 - [x] Turn 5, Morgan: 07 Features
 - [ ] Turn 6, Cristian: 10 Human-in-the-loop
