@@ -9,7 +9,7 @@ Based on a script (/analysis/compare_years.py) written to compare the readings b
 
 **Readings.** The Year N+1 sensor readings have the same 12,648 rows as Year N. Every sensor has the same count, average, minimum and maximum in both years, so the conditions did not change and there is no data drift. Retraining on the readings alone would not change anything.
 
-**Labels.** The Year N+1 accidents file is different: 844 rows instead of 997, with 822 near-accidents instead of 964 and 21 accidents instead of 32. Near-accidents dropped from 1.30 to 1.11 per hour, with the same conditions.
+**Labels.** The Year N+1 accidents file is different: 844 rows instead of 997, with 822 near-accidents instead of 964 and 21 accidents instead of 32. Near-accidents dropped from 1.30 to 1.10 per hour, with the same conditions.
 
 **Decision.** The readings give no reason to retrain. Because the labels changed, the network's predictions are probably too high now, so it should be checked against the Year N+1 accidents and retrained if it got worse. From now on, the data should be compared every month so changes are noticed early.
 
@@ -35,8 +35,8 @@ The case study (slide 19) asks about the readings, which shows data drift. The a
 | Rows in the accidents file | 997 | 844 |
 | Near-accidents | 964 | 822 |
 | Accidents | 32 | 21 |
-| Near-accidents per hour, all hours | 1.30 | 1.11 |
-| Near-accidents per hour, dark or icy hours | 1.27 | 1.06 |
+| Near-accidents per hour, all hours | 1.30 | 1.10 |
+| Near-accidents per hour, dark or icy hours | 1.26 | 1.06 |
 
 With identical conditions, 142 fewer near-accidents is about 3.4 standard deviations, so chance is very unlikely to explain it.
 
