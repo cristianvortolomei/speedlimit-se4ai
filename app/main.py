@@ -17,6 +17,8 @@ from speed_limit import (
 load_dotenv(Path(__file__).resolve().parent.parent / ".env")
 
 RECALCULATE_SECONDS = 3600  # SPEC6: every hour
+HIGHWAY_NAME = "Highway near Innsbruck"
+HIGHWAY_LAT, HIGHWAY_LON = 47.27, 11.39  # the highway doesn't move, so this is fixed
 AQI_BANDS = [(20, "good"), (40, "fair"), (60, "moderate"), (80, "poor"), (100, "very poor")]
 RED, NAVY = "#c8102e", "#152230"
 CHIP_COLORS = {
@@ -97,7 +99,7 @@ def predictions_chart(predictions: dict[int, float]) -> alt.LayerChart:
     return (bars + target).properties(height=170)
 
 
-st.set_page_config(page_title="SpeedLimit", page_icon="🚦", layout="wide")
+st.set_page_config(page_title="SpeedLimit", layout="wide")
 st.markdown(STYLE, unsafe_allow_html=True)
 st.markdown("## SpeedLimit")
 st.caption("Sets the highway speed limit from light, road conditions and air quality.")
@@ -124,18 +126,25 @@ with inputs:
 
     with st.container(border=True):
         st.markdown("**Air quality**")
-        source = st.radio(
-            "Source", ["Live from Open-Meteo", "Enter manually"], horizontal=True,
-            label_visibility="collapsed",
-        )
-        if source == "Live from Open-Meteo":
-            col1, col2 = st.columns(2)
-            latitude = col1.number_input("Latitude", value=47.27, format="%.2f")
-            longitude = col2.number_input("Longitude", value=11.39, format="%.2f")
-        else:
-            manual_aqi = st.number_input(
-                "European AQI", min_value=0, value=30, help="Above 40 the LLM decides the reduction"
+        choice, location = st.columns(2)
+        with choice:
+            source = st.radio(
+                "Source", ["Live from Open-Meteo", "Enter manually"],
+                label_visibility="collapsed",
             )
+            if source == "Live from Open-Meteo":
+                st.caption("Read live for the highway’s location.")
+            else:
+                manual_aqi = st.number_input(
+                    "European AQI", min_value=0, value=30,
+                    help="Above 40 the LLM decides the reduction",
+                )
+        with location:
+            st.map(
+                pd.DataFrame({"lat": [HIGHWAY_LAT], "lon": [HIGHWAY_LON]}),
+                zoom=8, size=1200, color="#C8102E99", height=150,
+            )
+            st.caption(HIGHWAY_NAME)
 
     with st.container(border=True):
         st.markdown("**Control room**")
@@ -164,7 +173,7 @@ def decide_and_show():
     with st.spinner("Deciding..."):
         if source == "Live from Open-Meteo":
             try:
-                air = fetch_air_quality(latitude, longitude)
+                air = fetch_air_quality(HIGHWAY_LAT, HIGHWAY_LON)
             except Exception:
                 air = None
         else:
